@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import gevent
 import gevent.monkey
+import RPi.GPIO as GPIO
 gevent.monkey.patch_all()
 
 import json
@@ -24,6 +25,8 @@ elif sys.platform.lower().startswith('linux'):
     from Delta5Interface import get_hardware_interface
 
 hardwareInterface = get_hardware_interface()
+
+GPIO.setmode(GPIO.BOARD)
 
 # Set this variable to "threading", "eventlet" or "gevent" to test the
 # different async modes, or leave it set to None for the application to choose
@@ -172,4 +175,6 @@ def heartbeat_thread_function():
         gevent.sleep(0.5)
 
 if __name__ == '__main__':
+    GPIO.output(37, GPIO.HIGH)
     socketio.run(app, host='0.0.0.0', debug=True)
+    GPIO.output(37, GPIO.LOW)
