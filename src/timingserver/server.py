@@ -27,6 +27,7 @@ elif sys.platform.lower().startswith('linux'):
 hardwareInterface = get_hardware_interface()
 
 GPIO.setmode(GPIO.BOARD)
+GPIO.setup(37, GPIO.OUT)
 
 # Set this variable to "threading", "eventlet" or "gevent" to test the
 # different async modes, or leave it set to None for the application to choose
