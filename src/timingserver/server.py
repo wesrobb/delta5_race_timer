@@ -176,6 +176,8 @@ def heartbeat_thread_function():
         gevent.sleep(0.5)
 
 if __name__ == '__main__':
-    GPIO.output(37, GPIO.HIGH)
-    socketio.run(app, host='0.0.0.0', debug=True)
-    GPIO.output(37, GPIO.LOW)
+    try:
+        GPIO.output(37, GPIO.HIGH)
+        socketio.run(app, host='0.0.0.0', debug=True)
+    finally:
+        GPIO.cleanup()
