@@ -26,6 +26,7 @@ elif sys.platform.lower().startswith('linux'):
 
 hardwareInterface = get_hardware_interface()
 
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(37, GPIO.OUT)
 
